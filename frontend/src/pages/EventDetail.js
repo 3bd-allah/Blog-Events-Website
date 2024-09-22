@@ -9,6 +9,7 @@ import {
 
 import EventItem from '../components/EventItem';
 import EventsList from '../components/EventsList';
+import { getAuthToken } from '../util/auth';
 
 function EventDetailPage() {
   const { event, events } = useRouteLoaderData('event-detail');
@@ -31,6 +32,8 @@ function EventDetailPage() {
 
 export default EventDetailPage;
 
+
+// load Specific event 
 async function loadEvent(id) {
   const response = await fetch('http://localhost:8080/events/' + id);
 
@@ -47,6 +50,8 @@ async function loadEvent(id) {
   }
 }
 
+
+// load all events 
 async function loadEvents() {
   const response = await fetch('http://localhost:8080/events');
 
@@ -76,10 +81,16 @@ export async function loader({ request, params }) {
   });
 }
 
+
 export async function action({ params, request }) {
+
   const eventId = params.eventId;
+  const token = getAuthToken();
   const response = await fetch('http://localhost:8080/events/' + eventId, {
     method: request.method,
+    headers:{
+      'Authorization': 'Bearer ' + token
+    }
   });
 
   if (!response.ok) {
