@@ -4,7 +4,8 @@ import {
   useNavigation,
   useActionData,
   json,
-  redirect
+  redirect,
+  useRouteLoaderData
 } from 'react-router-dom';
 
 import classes from './EventForm.module.css';
@@ -14,7 +15,7 @@ function EventForm({ method, event }) {
   const data = useActionData();
   const navigate = useNavigate();
   const navigation = useNavigation();
-
+  const token = useRouteLoaderData('root');
   const isSubmitting = navigation.state === 'submitting';
 
   function cancelHandler() {

@@ -10,6 +10,7 @@ function EventsNavigation() {
     <header className={classes.header}>
       <nav>
         <ul className={classes.list}>
+
           <li>
             <NavLink
               to="/events"
@@ -21,6 +22,7 @@ function EventsNavigation() {
               All Events
             </NavLink>
           </li>
+
           {token &&(
             <li>
               <NavLink
@@ -33,6 +35,7 @@ function EventsNavigation() {
               </NavLink>
             </li>
           )}
+
         </ul>
       </nav>
     </header>
